@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>jQuery Exercise</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ </head>
+ <body>
+        <h1 class="title">jQuery and the Open Weather Map</h1>
+
+        <div id="weather"></div>
+
+        <script>
+            var url = "https://api.openweathermap.org/data/2.5/weather?q=Toronto,Ont&appid=e58cc87201b9e85b47c6ad90bb23f1e4&units=metric";
+            $(document).ready(function(){
+                $.getJSON( url, function( data ){
+                    console.log(data);
+                    console.log(data.main.temp);
+                        $('#weather').html(
+                        "Temperature: " + data.main.temp + "&deg;" +
+                        "<br>" +
+                        "Conditions: " + data.weather[0].main +
+                        "<br>" +
+                        "City: " + data.name +
+                        "<br>" + 
+                        "<img src='http://openweathermap.org/img/wn/" + 
+                        data.weather[0].icon + "@2x.png'>"
+                    );
+                });
+            });
+        </script>
+
+        <style> 
+
+            body{
+                background-color: rgb(93, 17, 216);
+            }
+        
+            .title{
+                color: #fff;
+                text-transform: uppercase;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                font-size: 50px;
+                margin-top: 100px;
+                margin-bottom: 100px;
+                transition: 0.2s;
+            }
+
+            .title:hover{
+                color: rgb(255, 175, 100);
+            }
+
+            #weather{
+                color: #fff;
+                text-transform: uppercase;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                font-size: 32px;
+                line-height: 70px;
+            }
+
+            #weather:hover{
+                color: rgb(255, 175, 100);
+            }
+        </style>
+ </body>
+ </html>
+
